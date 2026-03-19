@@ -122,4 +122,26 @@ public class UiUtilsTest {
 		
 	}
 	
+	@Test
+	public void escapeJs_shouldEscapeBackslash() {
+		Assert.assertEquals("Foo \\\\", ui.escapeJs("Foo \\"));
+	}
+	
+	@Test
+	public void escapeJs_shouldPreventXSSViaBackslashInjection() {
+		// exact payload from the bug report
+		String result = ui.escapeJs("Foo \\\"}];alert(0);[// Bar");
+		Assert.assertTrue(result.contains("\\\\")); // backslash must be doubled
+	}
+	
+	@Test
+	public void escapeJs_shouldEscapeDoubleQuote() {
+		Assert.assertEquals("say \\\"hi\\\"", ui.escapeJs("say \"hi\""));
+	}
+	
+	@Test
+	public void escapeJs_shouldReturnNullForNullInput() {
+		Assert.assertNull(ui.escapeJs(null));
+	}
+	
 }

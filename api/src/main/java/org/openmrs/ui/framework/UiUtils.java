@@ -477,7 +477,10 @@ public abstract class UiUtils {
 		if (input == null) {
 			return null;
 		}
+		
+		input = input.replaceAll("\\\\", "\\\\\\\\");
 		input = input.replaceAll("\n", "\\\\n");
+		input = input.replaceAll("\r", "\\\\r");
 		input = input.replaceAll("'", "\\\\'");
 		input = input.replaceAll("\"", "\\\\\"");
 		return input;
@@ -683,11 +686,11 @@ public abstract class UiUtils {
 	public void setClientTimezone(String clientTimezone) {
 		try {
 			Context.addProxyPrivilege(PrivilegeConstants.EDIT_USERS);
-
+			
 			String propertyName = Context.getAdministrationService()
-					.getGlobalProperty(UiFrameworkConstants.UP_CLIENT_TIMEZONE);
+			        .getGlobalProperty(UiFrameworkConstants.UP_CLIENT_TIMEZONE);
 			String currentClientTimezone = Context.getAuthenticatedUser().getUserProperty(propertyName);
-
+			
 			if (currentClientTimezone == null || !currentClientTimezone.equals(clientTimezone)) {
 				Context.getUserService().setUserProperty(Context.getAuthenticatedUser(), propertyName, clientTimezone);
 			}
