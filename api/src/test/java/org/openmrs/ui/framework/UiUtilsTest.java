@@ -129,9 +129,9 @@ public class UiUtilsTest {
 	
 	@Test
 	public void escapeJs_shouldPreventXSSViaBackslashInjection() {
-        String input = "Foo \\\"}];alert(0);[// Bar";
-        String expected = "Foo \\\\\\\"}];alert(0);[// Bar";
-        Assert.assertEquals(expected, ui.escapeJs(input));
+		String input = "Foo \\\"}];alert(0);[// Bar";
+		String expected = "Foo \\\\\\\"}];alert(0);[// Bar";
+		Assert.assertEquals(expected, ui.escapeJs(input));
 	}
 	
 	@Test
