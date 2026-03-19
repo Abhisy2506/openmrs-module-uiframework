@@ -478,11 +478,11 @@ public abstract class UiUtils {
 			return null;
 		}
 		
-         input.replace("\\", "\\\\");
-         input.replace("\n", "\\n");
-         input.replace("\r", "\\r");
-         input.replace("'", "\\'");
-         input.replace("\"", "\\\"");
+		input = input.replace("\\", "\\\\");
+		input = input.replace("\n", "\\n");
+		input = input.replace("\r", "\\r");
+		input = input.replace("'", "\\'");
+		input = input.replace("\"", "\\\"");
 		return input;
 	}
 	
